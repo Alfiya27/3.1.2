@@ -20,10 +20,20 @@ public class User implements UserDetails {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "lastName")
+    private String lastName;
+
+    @Column(name = "age")
+    private int age;
+
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(
             name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -44,6 +54,24 @@ public class User implements UserDetails {
 
     public User(String username, String password, Set<Role> roles) {
         this.username = username;
+        this.password = password;
+        this.roles = roles;
+    }
+
+    public User(String username, String lastName, int age, String email, Set<Role> roles) {
+        this.username = username;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.roles = roles;
+    }
+
+    public User(int id, String username, String lastName, int age, String email, String password, Set<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
@@ -83,6 +111,30 @@ public class User implements UserDetails {
     @Override
     public boolean isAccountNonLocked() {
         return true;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override

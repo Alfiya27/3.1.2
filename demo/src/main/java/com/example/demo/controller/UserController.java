@@ -15,6 +15,6 @@ public class UserController {
     public String usersInfo(@AuthenticationPrincipal User user, Model model) {
         model.addAttribute("user", user);
         model.addAttribute("roles", user.getRoles());
-        return "/info";
+        return "/user";
     }
 }

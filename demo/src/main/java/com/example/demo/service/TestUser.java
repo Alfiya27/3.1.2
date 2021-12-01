@@ -38,7 +38,10 @@ public class TestUser {
         role1.add(roleService.findByRoleName("ROLE_ADMIN"));
 
         User user1 = new User();
-        user1.setUsername("admin");
+        user1.setUsername("Ivan");
+        user1.setLastName("ivanov");
+        user1.setAge(25);
+        user1.setEmail("ivanov@mail.ru");
         user1.setPassword(passwordEncoder.encode("admin"));
         user1.setRoles(role1);
         userService.addUser(user1);
@@ -47,7 +50,10 @@ public class TestUser {
         role2.add(roleService.findByRoleName("ROLE_USER"));
 
         User user2 = new User();
-        user2.setUsername("user");
+        user2.setUsername("Pavel");
+        user2.setLastName("Pavlov");
+        user2.setAge(30);
+        user2.setEmail("pavlov@mail.ru");
         user2.setPassword(passwordEncoder.encode("user"));
         user2.setRoles(role2);
         userService.addUser(user2);
