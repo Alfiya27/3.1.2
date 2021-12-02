@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>User profile</title>
+    <title>User Page</title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -30,7 +30,7 @@
         <div class="col-2 px-0">
             <br>
             <ul class="nav nav-pills flex-column">
-                <div sec:authorize="hasAuthority('ADMIN')">
+                <div sec:authorize="hasRole('ADMIN')">
                     <li class="nav-item">
                         <a href="/admin" class="nav-link active">Admin</a>
                     </li>
@@ -91,7 +91,7 @@
                                                 <td>
                                                     <button class="btn btn-info edit-btn"
                                                             data-toggle="modal"
-                                                            th:data-target="${'#editUser'+ user.id}">Edit
+                                                            th:data-target="${'#updateUser'+ user.id}">Edit
                                                     </button>
                                                 </td>
 
@@ -101,8 +101,8 @@
                                                             th:data-target="${'#removeUser'+ user.id}">Delete
                                                     </button>
                                                 </td>
-                                                <div class="modal fade" th:id="${'editUser'+ user.id}" tabindex="-1"
-                                                     role="dialog" th:aria-labelledby="${'editUser'+ user.id}"
+                                                <div class="modal fade" th:id="${'updateUser'+ user.id}" tabindex="-1"
+                                                     role="dialog" th:aria-labelledby="${'updateUser'+ user.id}"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog">
                                                         <div class="modal-content">
@@ -128,7 +128,7 @@
                                                                            id="firstname" required>
                                                                     <br>
                                                                     <label class="font-weight-bold"
-                                                                           for="lastName">Last name</label>
+                                                                           for="lastname">Last name</label>
                                                                     <input type="text" class="form-control"
                                                                            name="lastName" th:value="${user.lastName}"
                                                                            id="lastname" required>
@@ -149,7 +149,7 @@
                                                                     <br>
                                                                     <label class="font-weight-bold" for="roles">Roles</label>
                                                                     <select multiple size="2" class="form-control"
-                                                                            id="roles" name="name" required>
+                                                                            id="roles" name="nameRole" required>
                                                                         <option
                                                                                 th:each="role : ${allRoles}"
                                                                                 th:value="${role.name}"
